@@ -1,0 +1,12 @@
+{
+  "name": "com.storefront.cordova.piwik",
+  "version": "0.0.1",
+  "cordova_name" : "Piwik",
+  "description" : "Cordova Piwik Plugin",
+  "keywords" : [
+      "cordova",
+      "piwik",
+      "analytics"
+  ],
+  "engines" : ["android", "iOS"]
+}

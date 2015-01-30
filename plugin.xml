@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.storefront.cordova.piwik" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Piwik</name>
+    <description>Piwik Analytics Plugin</description>
+    <js-module name="Piwik" src="www/Piwik.js">
+        <clobbers target="piwik"/>
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Piwik">
+                <param name="android-package" value="com.storefront.cordova.piwik.Piwik"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"/>
+        <source-file src="src/android/Piwik.java" target-dir="src/com/storefront/cordova/piwik"/>
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="Piwik">
+                <param name="ios-package" value="Piwik"/>
+            </feature>
+        </config-file>
+        <resource-dir src="PiwikTracker" />
+        <source-file src="src/ios/CDVPiwik.m"/>
+    </platform>
+</plugin>
