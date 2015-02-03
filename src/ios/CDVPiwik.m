@@ -3,7 +3,7 @@
 #import "CDVPiwik.h"
 #import "PiwikTracker.h"
 
-@implementation CDVPiwik
+@implementation PiwikPlugin
 
 
 
@@ -17,7 +17,7 @@
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
-    [CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+    [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 
     _trackerStarted = true;
 

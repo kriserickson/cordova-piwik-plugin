@@ -1,3 +1,5 @@
+#import <Cordova/CDV.h>
+
 @interface PiwikPlugin : CDVPlugin {
     bool _trackerStarted; 
 }
