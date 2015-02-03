@@ -8,7 +8,7 @@ Native Piwik Analytics based upon the [Piwik SDK for Android](https://github.com
 ## Supported Platforms ##
 
 * Android
-* iOS
+* iOS 
 
 ## Installation ##
 
