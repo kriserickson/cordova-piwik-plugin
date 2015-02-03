@@ -19,10 +19,33 @@
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="Piwik">
-                <param name="ios-package" value="Piwik"/>
+                <param name="ios-package" value="PiwikPlugin"/>
             </feature>
         </config-file>
-        <resource-dir src="PiwikTracker" />
+        
         <source-file src="src/ios/CDVPiwik.m"/>
+        <header-file src="src/ios/CDVPiwik.h"/>
+
+        <header-file src="src/ios/PiwikTracker/PiwikTrackedViewController.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikTracker.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikTransaction.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikTransactionBuilder.h"/>
+        <header-file src="src/ios/PiwikTracker/PTEventEntity.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikDebugDispatcher.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikTransactionItem.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikDispatcher.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikLocationManager.h"/>
+        <header-file src="src/ios/PiwikTracker/PiwikNSURLSessionDispatcher.h"/>
+
+        <source-file src="src/ios/PiwikTracker/PiwikNSURLSessionDispatcher.m"/>
+        <source-file src="src/ios/PiwikTracker/PiwikTrackedViewController.m" />
+        <source-file src="src/ios/PiwikTracker/PiwikTracker.m" />
+        <source-file src="src/ios/PiwikTracker/PiwikTransaction.m" />
+        <source-file src="src/ios/PiwikTracker/PiwikTransactionBuilder.m" />
+        <source-file src="src/ios/PiwikTracker/PiwikTransactionItem.m" />
+        <source-file src="src/ios/PiwikTracker/PTEventEntity.m" />
+        <source-file src="src/ios/PiwikTracker/PiwikDebugDispatcher.m"/>
+        <source-file src="src/ios/PiwikTracker/PiwikLocationManager.m"/>
+
     </platform>
 </plugin>
