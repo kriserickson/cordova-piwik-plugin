@@ -24,6 +24,9 @@
         </config-file>
 
         <framework src="CoreData.framework"/>
+        <framework src="CoreLocation.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="UIKit.framework"/>
         
         <source-file src="src/ios/CDVPiwik.m"/>
         <header-file src="src/ios/CDVPiwik.h"/>
