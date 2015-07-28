@@ -56,6 +56,10 @@
         <source-file src="src/ios/PiwikTracker/PiwikDebugDispatcher.m"/>
         <source-file src="src/ios/PiwikTracker/PiwikLocationManager.m"/>   
 
+	<info>
+The iOS version does not yet suppport tracking goals and custom variables...  And you have to change the C Language Dialect in Xcode to get the app to compile (see [Github Issues](https://github.com/kriserickson/cordova-piwik-plugin/issues/1#issuecomment-114652098) for more detail).  
+	</info>
+
     </platform>
     <!-- wp8 -->
     <platform name="wp8">
