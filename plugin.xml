@@ -25,11 +25,13 @@
 	<framework src="CoreData.framework" />
         <framework src="CoreLocation.framework" />
         <framework src="CoreGraphics.framework" />
+        <framework src="CoreData.framework"/>
         <framework src="UIKit.framework" />
+
 
         <resource-dir src="PiwikTracker" />
         <source-file src="src/ios/CDVPiwik.m"/>
- 	<header-file src="src/ios/CDVPiwik.h"/>
+     	<header-file src="src/ios/CDVPiwik.h"/>
 
 <!--        
 	<header-file src="src/ios/PiwikTracker/PiwikTrackedViewController.h"/>
@@ -53,8 +55,8 @@
         <source-file src="src/ios/PiwikTracker/PiwikDebugDispatcher.m"/>
         <source-file src="src/ios/PiwikTracker/PiwikLocationManager.m"/>   
 -->
- </platform>
-		    <!-- wp8 -->
+    </platform>
+    <!-- wp8 -->
     <platform name="wp8">
         <config-file target="config.xml" parent="/*">
             <feature name="Piwik">
