@@ -24,107 +24,110 @@
 }
 
 - (void) trackScreenView: (CDVInvokedUrlCommand*)command {
-    CDVPluginResult* pluginResult = nil;
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult *pluginResult = nil;
 
-    if ( ! _trackerStarted) {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Tracker not started"];
-      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-      return;
-    }
+        if (!_trackerStarted) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Tracker not started"];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+            return;
+        }
 
-    NSString *path = nil;
-    NSString *title = nil;
+        NSString *path = nil;
+        NSString *title = nil;
 
-    if ([command.arguments count] > 0) {
-        path = [command.arguments objectAtIndex:0];
-    }
+        if ([command.arguments count] > 0) {
+            path = [command.arguments objectAtIndex:0];
+        }
 
-    if ([command.arguments count] > 1) {
-        title = [command.arguments objectAtIndex:1];
-    }
+        if ([command.arguments count] > 1) {
+            title = [command.arguments objectAtIndex:1];
+        }
 
-    [[PiwikTracker sharedInstance] sendViews:path, title, nil];
+        [[PiwikTracker sharedInstance] sendViews:path, title, nil];
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
-
+    }];
 }
 
 - (void) trackEvent: (CDVInvokedUrlCommand*)command {
-    CDVPluginResult* pluginResult = nil;
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult *pluginResult = nil;
 
-    if ( ! _trackerStarted) {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Tracker not started"];
-      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-      return;
-    }
+        if (!_trackerStarted) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Tracker not started"];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+            return;
+        }
 
-    NSString *category = nil;
-    NSString *action = nil;
-    NSString *label = nil;
-    NSNumber *value = nil;
+        NSString *category = nil;
+        NSString *action = nil;
+        NSString *label = nil;
+        NSNumber *value = nil;
 
-    if ([command.arguments count] > 0) {
-        category = [command.arguments objectAtIndex:0];
-    }
+        if ([command.arguments count] > 0) {
+            category = [command.arguments objectAtIndex:0];
+        }
 
-    if ([command.arguments count] > 1) {
-        action = [command.arguments objectAtIndex:1];
-    }
+        if ([command.arguments count] > 1) {
+            action = [command.arguments objectAtIndex:1];
+        }
 
-    if ([command.arguments count] > 2) {
-        label = [command.arguments objectAtIndex:2];
-    }
+        if ([command.arguments count] > 2) {
+            label = [command.arguments objectAtIndex:2];
+        }
 
-    if ([command.arguments count] > 3) {
-        value = [command.arguments objectAtIndex:3];
-    }
+        if ([command.arguments count] > 3) {
+            value = [command.arguments objectAtIndex:3];
+        }
 
-    [[PiwikTracker sharedInstance] sendEventWithCategory:category action:action name:label value:value];
+        [[PiwikTracker sharedInstance] sendEventWithCategory:category action:action name:label value:value];
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
 }
 
 - (void) trackException: (CDVInvokedUrlCommand*)command {
-     CDVPluginResult* pluginResult = nil;
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult *pluginResult = nil;
 
-    if ( ! _trackerStarted) {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Tracker not started"];
-      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-      return;
-    }
+        if (!_trackerStarted) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Tracker not started"];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+            return;
+        }
 
-    NSString *className = nil;
-    NSString *description = nil;
-    NSString *isFatal = nil;
+        NSString *className = nil;
+        NSString *description = nil;
+        NSString *isFatal = nil;
 
-    if ([command.arguments count] > 0) {
-        className = [command.arguments objectAtIndex:0];
-    } else {
-        className = @"";
-    }
+        if ([command.arguments count] > 0) {
+            className = [command.arguments objectAtIndex:0];
+        } else {
+            className = @"";
+        }
 
-    if ([command.arguments count] > 1) {
-        description = [command.arguments objectAtIndex:1];
-    } else {
-        description = @"";
-    }
+        if ([command.arguments count] > 1) {
+            description = [command.arguments objectAtIndex:1];
+        } else {
+            description = @"";
+        }
 
-    if ([command.arguments count] > 2) {
-        isFatal = [command.arguments objectAtIndex:2];
-    }
+        if ([command.arguments count] > 2) {
+            isFatal = [command.arguments objectAtIndex:2];
+        }
 
-    NSString *fullDescription = [NSString stringWithFormat:@"%@ - %@", className, description];
+        NSString *fullDescription = [NSString stringWithFormat:@"%@ - %@", className, description];
 
 
-    [[PiwikTracker sharedInstance] sendExceptionWithDescription:fullDescription isFatal:NO];
+        [[PiwikTracker sharedInstance] sendExceptionWithDescription:fullDescription isFatal:NO];
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
 }
 
 - (void) trackGoal: (CDVInvokedUrlCommand*)command {

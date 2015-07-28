@@ -22,13 +22,17 @@
                 <param name="ios-package" value="PiwikPlugin"/>
             </feature>
         </config-file>
+	<framework src="CoreData.framework" />
+        <framework src="CoreLocation.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="UIKit.framework" />
 
-        <framework src="CoreData.framework"/>
-        
+        <resource-dir src="PiwikTracker" />
         <source-file src="src/ios/CDVPiwik.m"/>
-        <header-file src="src/ios/CDVPiwik.h"/>
+ 	<header-file src="src/ios/CDVPiwik.h"/>
 
-        <header-file src="src/ios/PiwikTracker/PiwikTrackedViewController.h"/>
+<!--        
+	<header-file src="src/ios/PiwikTracker/PiwikTrackedViewController.h"/>
         <header-file src="src/ios/PiwikTracker/PiwikTracker.h"/>
         <header-file src="src/ios/PiwikTracker/PiwikTransaction.h"/>
         <header-file src="src/ios/PiwikTracker/PiwikTransactionBuilder.h"/>
@@ -47,7 +51,17 @@
         <source-file src="src/ios/PiwikTracker/PiwikTransactionItem.m" />
         <source-file src="src/ios/PiwikTracker/PTEventEntity.m" />
         <source-file src="src/ios/PiwikTracker/PiwikDebugDispatcher.m"/>
-        <source-file src="src/ios/PiwikTracker/PiwikLocationManager.m"/>
+        <source-file src="src/ios/PiwikTracker/PiwikLocationManager.m"/>   
+-->
+ </platform>
+		    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Piwik">
+                <param name="wp-package" value="Piwik"/>
+            </feature>
+        </config-file>
 
+        <source-file src="src/wp/Piwik.cs" />
     </platform>
 </plugin>

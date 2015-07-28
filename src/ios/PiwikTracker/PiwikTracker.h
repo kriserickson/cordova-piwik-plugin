@@ -322,6 +322,14 @@ typedef NS_ENUM(NSUInteger, CustomVariableScope) {
 - (BOOL)sendOutlink:(NSString*)url;
 
 /**
+ Track a download initiated by the app.
+
+ @param url The url of the downloaded content.
+ @return YES if the event was queued for dispatching.
+ */
+- (BOOL)sendDownload:(NSString*)url;
+
+/**
  Track that the app was launched from a Piwik campaign URL.
  The campaign information will be sent to the server with the next Piwik event.
  

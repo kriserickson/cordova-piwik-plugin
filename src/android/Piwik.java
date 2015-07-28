@@ -23,17 +23,17 @@ public class Piwik extends CordovaPlugin {
     public static final String SET_USER_CUSTOM_VARIABLE = "setUserCustomVariable"; // [index, name, value]);
 
     Tracker piwikTracker = null;
-    
+
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext)  {
-        
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+
         if (action.equals(START_TRACKER)) {
             String trackerUrl;
             int applicationId;
             String userId;
             try {
-                trackerUrl = args.getString(0);                
+                trackerUrl = args.getString(0);
             } catch (JSONException ex) {
                 callbackContext.error("Tracker URL does not appear to be a valid String");
                 return true;
@@ -57,7 +57,7 @@ public class Piwik extends CordovaPlugin {
                 return true;
             }
             String title = args.opt(1) != null ? args.optString(1) : "";
-            this.trackScreenView(path, title, callbackContext);            
+            this.trackScreenView(path, title, callbackContext);
         } else if (action.equals(TRACK_EVENT)) {
             String category;
             String eventAction;
@@ -71,8 +71,8 @@ public class Piwik extends CordovaPlugin {
                 eventAction = args.getString(1);
             } catch (JSONException ex) {
                 callbackContext.error("Action does not appear to be a valid string");
-            return true;
-        }
+                return true;
+            }
             String label = args.opt(2) != null ? args.optString(2) : "";
             Integer value = args.opt(3) != null ? args.optInt(3) : null;
 
@@ -123,7 +123,7 @@ public class Piwik extends CordovaPlugin {
             } else {
                 this.setScreenCustomVariable(index, name, value, callbackContext);
             }
-            
+
         }
         return false;
     }
@@ -172,7 +172,7 @@ public class Piwik extends CordovaPlugin {
         if (piwikTracker == null) {
             callbackContext.error("piwik not initialized with setTracker");
         } else {
-            piwikTracker.trackEvent(category, action, label.length() == 0 ? null : label, value);
+            piwikTracker.trackEvent(category, action, label.length() == 0  || label.equals("null") ? null : label, value);
             callbackContext.success("Tracked event " + action);
         }
     }
@@ -180,8 +180,8 @@ public class Piwik extends CordovaPlugin {
 
     private void startTracker(String url, int applicationId, String userId, CallbackContext callbackContext) {
         try {
-            piwikTracker =  org.piwik.sdk.Piwik.getInstance(this.cordova.getActivity().getApplication()).newTracker(url, applicationId);
-            if (userId.length() > 0) {
+            piwikTracker = org.piwik.sdk.Piwik.getInstance(this.cordova.getActivity().getApplication()).newTracker(url, applicationId);
+            if (userId.length() > 0 && !userId.equals("null")) {
                 piwikTracker.setUserId(userId);
             }
             callbackContext.success("Started tracker for application: " + applicationId);
@@ -189,12 +189,12 @@ public class Piwik extends CordovaPlugin {
             callbackContext.error("url is malformed");
         }
     }
-    
+
     private void trackScreenView(String path, String title, CallbackContext callbackContext) {
         if (piwikTracker == null) {
             callbackContext.error("piwik not initialized with setTracker");
         } else {
-            if (title.length() > 0) {
+            if (title.length() > 0 && !title.equals("null")) {
                 piwikTracker.trackScreenView(path, title);
             } else {
                 piwikTracker.trackScreenView(path);
@@ -202,6 +202,6 @@ public class Piwik extends CordovaPlugin {
             callbackContext.success("Tracked page " + path + (title.length() > 0 ? " / " + title : ""));
         }
     }
-    
-    
+
+
 }
