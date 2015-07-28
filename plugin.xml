@@ -29,11 +29,12 @@
         <framework src="UIKit.framework" />
 
 
-        <resource-dir src="PiwikTracker" />
+
         <source-file src="src/ios/CDVPiwik.m"/>
      	<header-file src="src/ios/CDVPiwik.h"/>
 
-<!--        
+
+	<!-- Required piwik files -->
 	<header-file src="src/ios/PiwikTracker/PiwikTrackedViewController.h"/>
         <header-file src="src/ios/PiwikTracker/PiwikTracker.h"/>
         <header-file src="src/ios/PiwikTracker/PiwikTransaction.h"/>
@@ -54,7 +55,7 @@
         <source-file src="src/ios/PiwikTracker/PTEventEntity.m" />
         <source-file src="src/ios/PiwikTracker/PiwikDebugDispatcher.m"/>
         <source-file src="src/ios/PiwikTracker/PiwikLocationManager.m"/>   
--->
+
     </platform>
     <!-- wp8 -->
     <platform name="wp8">
