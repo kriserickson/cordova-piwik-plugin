@@ -18,7 +18,10 @@ Native Piwik Analytics based upon the [Piwik SDK for Android](https://github.com
 $ cordova plugin add https://github.com/kriserickson/cordova-piwik-plugin
 ```
 
-Note: The iOS version does not yet suppport tracking goals and custom variables...  And you have to change the C Language Dialect in Xcode to get the app to compile (see [Github Issues](https://github.com/kriserickson/cordova-piwik-plugin/issues/1#issuecomment-114652098) for more detail).
+To get the IOS version to work you have to drag the piwiktracker.xcdatamodeld package from the plugins/com.storefront.cordova/piwik/src/ios directory into XCode into the plugins directory (when cordova commandline  adds the ability to add a folder reference, this will be removed  (https://issues.apache.org/jira/browse/CB-8177).
+ 
+
+Note: The iOS version does not yet suppport tracking goals and custom variables...  
 
 ## Usage ##
 

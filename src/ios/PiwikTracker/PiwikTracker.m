@@ -339,7 +339,7 @@ static PiwikTracker *_sharedInstance;
 - (void)startDispatchTimer {
   
   // Run on main thread run loop
-  __weak typeof(self)weakSelf = self;
+  __weak PiwikTracker *weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     
     [weakSelf stopDispatchTimer];
@@ -796,7 +796,7 @@ static PiwikTracker *_sharedInstance;
     
     if (self.dispatchInterval == 0) {
       // Trigger dispatch
-      __weak typeof(self)weakSelf = self;
+      __weak PiwikTracker *weakSelf = self;
       dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf dispatch];
       });
@@ -1021,7 +1021,7 @@ static PiwikTracker *_sharedInstance;
       
       NSDictionary *requestParameters = [self requestParametersForEvents:events];
   
-      __weak typeof(self)weakSelf = self;
+      __weak PiwikTracker *weakSelf = self;
       void (^successBlock)(void) = ^ () {
         [weakSelf deleteEventsWithIDs:entityIDs];
         [weakSelf sendEventDidFinishHasMorePending:hasMore];
